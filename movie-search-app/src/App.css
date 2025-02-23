@@ -1,10 +1,47 @@
-.main-wrapper{
-    background: linear-gradient(to right,rgb(2,2,66),rgb(37,37,229));
-
+/* src/App.css */
+.app {
+  text-align: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
-.main-wrapper header h2{
-    font-family: 'montserrat','sans-serif';
-    font-weight: 700;
-    font-size: 40px;
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
 }

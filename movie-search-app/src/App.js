@@ -1,44 +1,25 @@
-import Result from "./components/Result";
-import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css'
-import Search from "./Search";
+// src/App.js
+import React from 'react';
+import SearchBar from './components/SearchBar';
+import MovieList from './components/MovieList';
+import { searchMovies } from './api/omdbApi';
+import './App.css';
 
-const APIURL = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
-const SEARCHAPI = "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
+const App = () => {
+    const [movies, setMovies] = React.useState([]);
 
-function App() {
-    const[state,setState]=useState ({
-      search:'',
-      results:[]
-    }) 
+    const handleSearch = async (query) => {
+        const movies = await searchMovies(query);
+        setMovies(movies);
+    };
 
-    const handleInput=(event)=>{
-      let search=event.target.value;
-      setState((prevState)=>{
-        return {...prevState,search:search}
-      })
-    }
-
-    const SearchResult=(event)=>{
-      if(event.key==="Enter"){
-        axios.get(" http://www.omdbapi.com/?i=tt3896198&apikey=12445788")
-        .then(res=>console.log(res))
-        .catch(err=>console.log(err))
-      }
-    }
-
-  return (
-    <div className="w-100 main-wrapper d-flex flex-column align-items-center justify-content-center">
-      <header className="w-100 text-center text-white mt-5">
-        <h2>Movie Search</h2>
-        <Search handleInput={handleInput} SearchResult={SearchResult}/>
-
-      </header>
-    </div>
-  );
-}
+    return (
+        <div className="app">
+            <h1>Movie Search App</h1>
+            <SearchBar onSearch={handleSearch} />
+            <MovieList movies={movies} />
+        </div>
+    );
+};
 
 export default App;
